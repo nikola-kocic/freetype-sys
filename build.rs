@@ -105,6 +105,10 @@ fn main() {
         .file("libpng/pngwtran.c")
         .file("libpng/pngwutil.c");
 
+    if let Some(include) = std::env::var_os("DEP_Z_INCLUDE") {
+        build.include(&include);
+    }
+
     let arch = std::env::var("CARGO_CFG_TARGET_ARCH").unwrap();
     if arch == "arm" || arch == "aarch64" {
         build
